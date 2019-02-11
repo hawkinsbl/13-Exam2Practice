@@ -41,8 +41,8 @@ def main():
     ###########################################################################
 
     # run_test_init()
-    run_test_append_string()
-    # run_test_double()
+    #run_test_append_string()
+    run_test_double()
     # run_test_shrink()
     # run_test_double_then_shrink()
     # run_test_reset()
@@ -109,7 +109,6 @@ class Box(object):
         else:
             self.contents = contents
 
-
     def append_string(self, additional_contents):
         """
         What comes in:
@@ -142,7 +141,7 @@ class Box(object):
           :type additional_contents: str
         """
         # ---------------------------------------------------------------------
-        # TODO: 3. Implement and test this function.
+        # done: 3. Implement and test this function.
         #     See the testing code (below) for more examples.
         # ---------------------------------------------------------------------
         # ---------------------------------------------------------------------
@@ -164,11 +163,32 @@ class Box(object):
         #       Read_this_ONLY_when_asked_Part_2.txt
         #    and complete your work on the problem.
         # ---------------------------------------------------------------------
+        extra = ''
         if len(additional_contents)+len(self.contents) > self.volume:
             numchar = self.volume - len(self.contents)
             if numchar > 0:
-                self.contents = 
-
+                contents = ''
+                for k in range(len(self.contents)):
+                    contents = contents + self.contents[k]
+                    #print(contents)
+                for j in range(numchar):
+                    contents = contents + additional_contents[j]
+                    #print(contents)
+                for i in range(self.volume - len(self.contents), len(additional_contents)):
+                    extra = extra + additional_contents[i]
+                    #print(extra)
+                self.contents = contents
+                return extra
+        else:
+            contents = ''
+            for k in range(len(self.contents)):
+                contents = contents + self.contents[k]
+                #print(contents)
+            for j in range(len(additional_contents)):
+                contents = contents + additional_contents[j]
+                #print(contents)
+            self.contents = contents
+            return extra
 
     def double(self):
         """
@@ -204,7 +224,7 @@ class Box(object):
           #                       contents that did NOT fit]
         """
         # ---------------------------------------------------------------------
-        # TODO: 4. Implement and test this function.
+        # Done: 4. Implement and test this function.
         #     The testing code is already written for you (above).
         # ---------------------------------------------------------------------
         # ---------------------------------------------------------------------
@@ -216,6 +236,8 @@ class Box(object):
         # FOR FULL CREDIT, YOUR SOLUTION MUST BE NO MORE THAN
         #    ** TWO **   LINES OF CODE.
         #######################################################################
+        x = self.append_string(self.contents)
+        return x
 
     def shrink(self, new_volume):
         """
